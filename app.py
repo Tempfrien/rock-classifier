@@ -4,8 +4,8 @@ from PIL import Image, ImageOps
 import numpy as np
 
 st.set_page_config(page_title="Rock Classifier", page_icon="🪨")
-st.title("🪨 เครื่องตรวจสอบชนิดหินด้วย AI")
-
+st.title("เครื่องตรวจสอบชนิดหินด้วย AI")
+st.title("อัปโหลดรูปภาพที่ช่องด้านล่างเพื่อตรวจสอบชนิดของหิน AI")
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model("keras_model.h5", compile=False)
