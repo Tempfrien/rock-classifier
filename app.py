@@ -94,6 +94,12 @@ st.markdown("""
 # 2. ส่วนหัวของหน้าเว็บ
 st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
+.subtitle {
+        margin-top: -20px;   /* ขยับขึ้น (ใช้ค่าลบ) */
+        margin-bottom: 50px; /* เว้นระยะห่างจากกล่องอัปโหลดด้านล่าง */
+        margin-left: 10px;   /* ขยับไปทางขวา */
+        text-align: left;    /* หรือเปลี่ยนเป็น center ถ้าอยากให้อยู่กลาง */
+    }
 
 # 3. ฟังก์ชันโหลดโมเดล
 @st.cache_resource
