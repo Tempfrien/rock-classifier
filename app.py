@@ -32,3 +32,5 @@ if file is not None:
     index = np.argmax(prediction)
     st.success(f"นี่คือ: {labels[index]}")
     st.info(f"ความมั่นใจ: {prediction[0][index] * 100:.2f}%")
+
+st.write("จัดทำโดย โรงเรียงเทิงวิทยาคม")
