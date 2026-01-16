@@ -83,9 +83,7 @@ st.markdown("""
         border-radius: 20px;
         padding: 10px 25px;
     }
-    
-    </style>
-    """, unsafe_allow_html=True)
+
     </style>
     """, unsafe_allow_html=True)
 
