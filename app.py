@@ -10,10 +10,9 @@ st.markdown("""
     <style>
     /* ตกแต่ง Title 'STONE LEN' */
     .main-title {
-        color: #FFD700; /* สีเหลืองทอง */
-        font-size: 200px;
+        color: #dcb799; /* สีเหลืองทอง */
+        font-size: 1000px;
         font-weight: 900;
-        text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
         text-align: left;
         margin-top: -50px;
     }
