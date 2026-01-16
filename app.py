@@ -112,7 +112,6 @@ except Exception as e:
 
 # 4. ส่วนอัปโหลด (ทำให้กึ่งกลาง)
 st.markdown("<br>", unsafe_allow_html=True)
-file = st.file_uploader("ลากไฟล์รูปหินมาวางที่นี่ (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
 
 if file is not None:
     # เมื่ออัปโหลดแล้ว ค่อยแบ่งเป็น 2 คอลัมน์เพื่อโชว์รูปและผลลัพธ์
