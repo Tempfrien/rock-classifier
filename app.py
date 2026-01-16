@@ -20,7 +20,7 @@ st.markdown("""
     /* หัวข้อ STONE LEN */
     .main-title {
         color: #dcb799;
-        font-size: 70px;
+        font-size: 200px;
         font-weight: 900;
         text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
         margin-bottom: 0px;
