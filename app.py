@@ -1,8 +1,9 @@
+from style_config import apply_custom_style
 import streamlit as st
 import tensorflow as tf
 from PIL import Image, ImageOps
 import numpy as np
-from style_config import apply_custom_style
+
 
 # 1. ตั้งค่าหน้าเว็บและดึงสไตล์
 st.set_page_config(page_title="STONE LEN - Rock Classification", layout="wide")
