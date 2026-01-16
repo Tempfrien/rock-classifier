@@ -93,10 +93,19 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. ส่วนหัวของหน้าเว็บ
-st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
+# 2. ส่วนหัวของหน้าเว็บ (ใช้การสั่งตำแหน่งแบบกำกับที่ตัวหนังสือโดยตรง)
+st.markdown('<h1 class="main-title">STONE LEN</h1>', unsafe_allow_html=True)
 
+# เราจะใส่ style="margin-top: -60px; ..." ลงไปในแท็บ <p> โดยตรงเลย
+st.markdown("""
+    <p class="subtitle" 
+       style="margin-top: -60px !important; 
+              position: relative; 
+              z-index: 10; 
+              margin-left: 10px;">
+        ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา
+    </p>
+    """, unsafe_allow_html=True)
 # 3. ฟังก์ชันโหลดโมเดล
 @st.cache_resource
 def load_model():
