@@ -153,5 +153,3 @@ if file is not None:
 st.markdown(f"""
     <div class="footer-bar">
         Creators : Chadaporn Boonnii, Nopphanat Junnunl, Saranya Changkeb, Phatcharakamon Sodsri
-    </div>
-    """, unsafe_allow_html=True)
