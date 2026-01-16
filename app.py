@@ -7,20 +7,11 @@ import numpy as np
 st.set_page_config(page_title="STONE LEN - Rock Classification", layout="wide")
 
 st.markdown("""
-    <style>
-    /* ตั้งค่าพื้นหลังด้วยรูปจาก Pixabay */
-    .stApp {
-        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                          url("https://pixabay.com/images/download/canyon-1740973_1920.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
-
+ 
     /* ตกแต่ง Title 'STONE LEN' */
     .main-title {
         color: #FFD700; /* สีเหลืองทอง */
-        font-size: 65px;
+        font-size: 200px;
         font-weight: 900;
         text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
         text-align: left;
