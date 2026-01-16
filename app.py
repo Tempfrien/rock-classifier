@@ -64,7 +64,7 @@ if file is not None:
             </div>
         """, unsafe_allow_html=True)
 
-# 5. Footer (ส่วนแสดงรายชื่อผู้จัดทำ)
+# 5. Footer (ท้ายไฟล์ app.py)
 st.markdown("""
     <div class="footer-bar">
         Creators : Chadaporn Boonnii, Nopphanat Junnunl, Saranya Changkeb, Phatcharakamon Sodsri
