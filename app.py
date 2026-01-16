@@ -7,7 +7,7 @@ import numpy as np
 st.set_page_config(page_title="STONE LEN - Rock Classification", layout="wide")
 
 st.markdown("""
- 
+    <style>
     /* ตกแต่ง Title 'STONE LEN' */
     .main-title {
         color: #FFD700; /* สีเหลืองทอง */
