@@ -20,10 +20,10 @@ def apply_custom_style():
         /* --- ส่วนที่ 2: หัวข้อ STONE LEN --- */
         .main-title {
             color: #dcb799 !important;
-            font-size: 100px !important;
+            font-size: 80px !important;
             font-weight: 900;
             text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
-            margin-top: -60px !important; 
+            margin-top: -100px !important; 
             text-align: left;
         }
 
