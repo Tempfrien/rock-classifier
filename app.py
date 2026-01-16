@@ -27,7 +27,7 @@ st.markdown("""
     /* 3. หัวข้อ STONE LEN (ขยับขึ้นไปชิดขอบบนมากขึ้น) */
     .main-title {
         color: #dcb799 !important;
-        font-size: 100px !important;
+        font-size: 90px !important;
         font-weight: 900;
         text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
         margin-top: -60px !important; 
