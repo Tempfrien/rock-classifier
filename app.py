@@ -27,17 +27,6 @@ st.markdown("""
         text-align: left;
     }
 
-    /* แก้ไขจุดนี้: เอา subtitle มาไว้ใน style */
-    .subtitle {
-        color: white;
-        font-size: 20px;
-        text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-        margin-top: -150px !important;   /* ขยับขึ้นหาชื่อ STONE LEN */
-        margin-bottom: 50px;            /* เว้นระยะห่างจากกล่องอัปโหลด */
-        margin-left: 10px;              /* ขยับไปทางขวานิดนึง */
-        text-align: left;
-    }
-
     /* จัดการกล่องอัปโหลดให้อยู่ตรงกลาง */
     [data-testid="stFileUploader"] {
         width: 310px !important; 
@@ -54,7 +43,7 @@ st.markdown("""
         text-align: center !important;
     }
 
-    /* เปลี่ยนชื่อปุ่ม */
+    /* เปลี่ยนชื่อปุ่มเป็น Upload file */
     button[kind="secondary"] {
         font-size: 0 !important;
         border-radius: 30px !important;
@@ -93,30 +82,22 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. ส่วนหัวของหน้าเว็บ (ใช้การดึงตำแหน่งแบบอิสระ)
+# 2. ส่วนหัวของหน้าเว็บ
 st.markdown('<h1 class="main-title">STONE LEN</h1>', unsafe_allow_html=True)
 
-# เราจะใช้ top: -80px; เพื่อดึงให้ตัวหนังสือภาษาไทยลอยขึ้นไปทับช่องว่าง
+# ใช้การดึงตำแหน่งแบบอิสระ (ดึงขึ้นไปหาชื่อ STONE LEN)
 st.markdown("""
-    <p class="subtitle" 
-       style="position: relative; 
+    <p style="color: white; 
+              font-size: 20px; 
+              text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+              position: relative; 
               top: -85px; 
               left: 10px; 
-              margin-bottom: -40px;">
+              margin-bottom: -50px;">
         ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา
     </p>
     """, unsafe_allow_html=True)
 
-# เราจะใส่ style="margin-top: -60px; ..." ลงไปในแท็บ <p> โดยตรงเลย
-st.markdown("""
-    <p class="subtitle" 
-       style="margin-top: -60px !important; 
-              position: relative; 
-              z-index: 10; 
-              margin-left: 10px;">
-        ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา
-    </p>
-    """, unsafe_allow_html=True)
 # 3. ฟังก์ชันโหลดโมเดล
 @st.cache_resource
 def load_model():
@@ -133,7 +114,8 @@ except Exception as e:
     st.error(f"Error: {e}")
 
 # 4. ส่วนอัปโหลด
-st.markdown("<br>", unsafe_allow_html=True)
+# ลดระยะห่างด้านบนเพื่อให้กล่องขาวขยับขึ้นมาสวยงาม
+st.markdown("<div style='margin-top: -30px;'></div>", unsafe_allow_html=True)
 file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
 if file is not None:
