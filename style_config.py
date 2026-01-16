@@ -36,3 +36,17 @@ def apply_custom_style():
         /* ...ส่วนอื่นๆ ถูกต้องดีแล้วครับ... */
         </style>
     """, unsafe_allow_html=True)
+/* --- ส่วนที่ 5: แถบรายชื่อด้านล่าง --- */
+        .footer-bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(45, 62, 51, 0.95); /* เพิ่มความเข้ม */
+            color: white;
+            text-align: center;
+            padding: 12px 0; /* เพิ่มพื้นที่แนวตั้ง */
+            font-size: 14px;
+            z-index: 9999; /* บังคับให้ลอยทับทุกองค์ประกอบ */
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
