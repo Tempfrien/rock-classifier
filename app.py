@@ -93,8 +93,19 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# 2. ส่วนหัวของหน้าเว็บ (ใช้การสั่งตำแหน่งแบบกำกับที่ตัวหนังสือโดยตรง)
+# 2. ส่วนหัวของหน้าเว็บ (ใช้การดึงตำแหน่งแบบอิสระ)
 st.markdown('<h1 class="main-title">STONE LEN</h1>', unsafe_allow_html=True)
+
+# เราจะใช้ top: -80px; เพื่อดึงให้ตัวหนังสือภาษาไทยลอยขึ้นไปทับช่องว่าง
+st.markdown("""
+    <p class="subtitle" 
+       style="position: relative; 
+              top: -85px; 
+              left: 10px; 
+              margin-bottom: -40px;">
+        ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา
+    </p>
+    """, unsafe_allow_html=True)
 
 # เราจะใส่ style="margin-top: -60px; ..." ลงไปในแท็บ <p> โดยตรงเลย
 st.markdown("""
