@@ -63,6 +63,29 @@ st.markdown("""
         padding: 10px;
         font-size: 14px;
     }
+    /* บังคับให้ช่องอัปโหลดรูปภาพอยู่ตรงกลาง */
+    [data-testid="stFileUploader"] {
+        width: 60%; /* ปรับความกว้างของช่องอัปโหลด */
+        margin: 0 auto; /* สั่งให้ Margin ซ้าย-ขวาเป็น Auto เพื่อให้อยู่ตรงกลาง */
+        display: block;
+    }
+
+    /* จัดตำแหน่งข้อความในช่องอัปโหลดให้อยู่กลางด้วย */
+    [data-testid="stFileUploader"] section {
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* ปรับแต่งปุ่ม Browse Files ให้ดูเด่นขึ้นและอยู่กลาง */
+    button[kind="secondary"] {
+        margin: 0 auto;
+        display: block;
+        border-radius: 20px;
+        padding: 10px 25px;
+    }
+    
+    </style>
+    """, unsafe_allow_html=True)
     </style>
     """, unsafe_allow_html=True)
 
@@ -124,6 +147,6 @@ if file is not None:
 # 5. ส่วนแสดงรายชื่อผู้จัดทำ (Footer)
 st.markdown("""
     <div class="footer">
-        Creators : Chadaporn Boonnii, Nopanut Channuan, Saranya Changkeb, Phatcharakamon Sodsri
+        Creators : Chadaporn Boonnii, Nopphanat Junnunl, Saranya Changkeb, Phatcharakamon Sodsri
     </div>
     """, unsafe_allow_html=True)
