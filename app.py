@@ -3,12 +3,19 @@ import tensorflow as tf
 from PIL import Image, ImageOps
 import numpy as np
 
-# 1. การตั้งค่าหน้าเว็บและ CSS ตกแต่ง
+# 1. การตั้งค่าหน้าเว็บและ CSS (เพิ่มคำสั่งซ่อนแถบขาวด้านบน)
 st.set_page_config(page_title="STONE LEN - Rock Classification", layout="wide")
 
 st.markdown("""
     <style>
-    /* พื้นหลัง */
+    /* 1. ซ่อนแถบขาวด้านบนสุด (Header) และเมนู */
+    header {visibility: hidden;}
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stDeployButton {display:none;}
+    [data-testid="stDecoration"] {display:none;}
+
+    /* 2. พื้นหลัง */
     .stApp {
         background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                           url("https://images.wallpaperscraft.com/image/single/beach_rocks_stones_136868_3840x2400.jpg");
@@ -17,33 +24,33 @@ st.markdown("""
         background-attachment: fixed;
     }
 
-    /* หัวข้อ STONE LEN */
+    /* 3. หัวข้อ STONE LEN (ขยับขึ้นไปชิดขอบบนมากขึ้น) */
     .main-title {
         color: #dcb799 !important;
         font-size: 100px !important;
         font-weight: 900;
         text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
-        margin-bottom: 0px;
+        margin-top: -60px !important; 
         text-align: left;
     }
 
-    /* จัดการกล่องอัปโหลดให้อยู่ตรงกลาง */
+    /* 4. จัดการกล่องอัปโหลดให้อยู่ตรงกลาง */
     [data-testid="stFileUploader"] {
-        width: 310px !important; 
+        width: 350px !important; 
         margin: 0 auto !important;
     }
 
     [data-testid="stFileUploader"] section {
         background-color: rgba(255, 255, 255, 0.9) !important;
         border-radius: 20px !important;
-        padding: 40px !important;
+        padding: 30px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
     }
 
-    /* เปลี่ยนชื่อปุ่มเป็น Upload file */
+    /* 5. เปลี่ยนชื่อปุ่มเป็น Upload file */
     button[kind="secondary"] {
         font-size: 0 !important;
         border-radius: 30px !important;
@@ -67,7 +74,7 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    .footer {
+    .footer-bar {
         position: fixed;
         left: 0;
         bottom: 0;
@@ -85,20 +92,20 @@ st.markdown("""
 # 2. ส่วนหัวของหน้าเว็บ
 st.markdown('<h1 class="main-title">STONE LEN</h1>', unsafe_allow_html=True)
 
-# ใช้การดึงตำแหน่งแบบอิสระ (ดึงขึ้นไปหาชื่อ STONE LEN)
+# ดึงตำแหน่งขึ้นไปหาชื่อ (ใช้ค่าลบที่รุนแรงขึ้น)
 st.markdown("""
     <p style="color: white; 
               font-size: 20px; 
               text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
               position: relative; 
-              top: -100px; 
-              left: 10px; 
-              margin-bottom: -50px;">
+              top: -45px; 
+              left: 10px;
+              margin-bottom: -40px;">
         ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา
     </p>
     """, unsafe_allow_html=True)
 
-# 3. ฟังก์ชันโหลดโมเดล
+# 3. โหลดโมเดล
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model("keras_model.h5", compile=False)
@@ -107,21 +114,16 @@ def load_labels():
     with open("labels.txt", "r", encoding="utf-8") as f:
         return [line.strip() for line in f.readlines()]
 
-try:
-    model = load_model()
-    labels = load_labels()
-except Exception as e:
-    st.error(f"Error: {e}")
+model = load_model()
+labels = load_labels()
 
 # 4. ส่วนอัปโหลด
-# ลดระยะห่างด้านบนเพื่อให้กล่องขาวขยับขึ้นมาสวยงาม
-st.markdown("<div style='margin-top: -30px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
 file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
 if file is not None:
     st.markdown("---")
     col1, col2 = st.columns([1, 1])
-    
     image = Image.open(file).convert("RGB")
     with col1:
         st.image(image, caption="รูปที่อัปโหลด", use_container_width=True)
@@ -149,7 +151,7 @@ if file is not None:
 
 # 5. Footer
 st.markdown(f"""
-    <div class="footer">
+    <div class="footer-bar">
         Creators : Chadaporn Boonnii, Nopphanat Junnunl, Saranya Changkeb, Phatcharakamon Sodsri
     </div>
     """, unsafe_allow_html=True)
