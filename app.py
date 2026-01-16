@@ -3,12 +3,12 @@ import tensorflow as tf
 from PIL import Image, ImageOps
 import numpy as np
 
-# 1. การตั้งค่าหน้าเว็บและ CSS ตกแต่ง (STONE LEN Style)
+# 1. การตั้งค่าหน้าเว็บและ CSS ตกแต่ง
 st.set_page_config(page_title="STONE LEN - Rock Classification", layout="wide")
 
 st.markdown("""
     <style>
-    /* ตั้งค่าพื้นหลังด้วยรูปแคนยอนจาก Pixabay */
+    /* พื้นหลัง */
     .stApp {
         background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                           url("https://images.wallpaperscraft.com/image/single/beach_rocks_stones_136868_3840x2400.jpg");
@@ -17,29 +17,54 @@ st.markdown("""
         background-attachment: fixed;
     }
 
-    /* ตกแต่งหัวข้อ STONE LEN */
+    /* หัวข้อ STONE LEN */
     .main-title {
         color: #dcb799;
         font-size: 70px;
         font-weight: 900;
         text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
         margin-bottom: 0px;
+        text-align: left;
     }
 
-    /* ตกแต่งคำอธิบายภาษาไทย */
     .subtitle {
         color: white;
         font-size: 20px;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
         margin-bottom: 30px;
+        text-align: left;
     }
 
-    /* ตกแต่งกล่องสีขาวสำหรับอัปโหลดรูป */
-    .stFileUploader {
+    /* จัดการกล่องอัปโหลดให้อยู่ตรงกลางหน้าจอ */
+    .upload-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    [data-testid="stFileUploader"] {
+        width: 600px; /* กำหนดความกว้างกล่อง */
+        margin: 0 auto;
+    }
+
+    .stFileUploader section {
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        padding: 40px !important;
+    }
+
+    /* เปลี่ยนชื่อปุ่ม Browse files เป็น Upload file */
+    button[kind="secondary"] {
+        font-size: 0 !important;
+        border-radius: 30px !important;
+        padding: 10px 30px !important;
+        background-color: white !important;
+        border: 1px solid #ccc !important;
+    }
+    button[kind="secondary"]::after {
+        content: "Upload file";
+        font-size: 16px !important;
+        color: #333;
     }
 
     /* ส่วนแสดงผลลัพธ์ */
@@ -47,11 +72,10 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.95);
         border-radius: 15px;
         padding: 20px;
-        margin-top: 20px;
         color: #333;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    /* แถบรายชื่อผู้จัดทำด้านล่าง */
     .footer {
         position: fixed;
         left: 0;
@@ -62,28 +86,8 @@ st.markdown("""
         text-align: center;
         padding: 10px;
         font-size: 14px;
+        z-index: 999;
     }
-    /* บังคับให้ช่องอัปโหลดรูปภาพอยู่ตรงกลาง */
-    [data-testid="stFileUploader"] {
-        width: 100%; /* ปรับความกว้างของช่องอัปโหลด */
-        margin: 0 auto; /* สั่งให้ Margin ซ้าย-ขวาเป็น Auto เพื่อให้อยู่ตรงกลาง */
-        display: block;
-    }
-
-    /* จัดตำแหน่งข้อความในช่องอัปโหลดให้อยู่กลางด้วย */
-    [data-testid="stFileUploader"] section {
-        text-align: center;
-        justify-content: center;
-    }
-
-    /* ปรับแต่งปุ่ม Uplode Files ให้ดูเด่นขึ้นและอยู่กลาง */
-    button[kind="secondary"] {
-        margin: 0 auto;
-        display: block;
-        border-radius: 20px;
-        padding: 10px 25px;
-    }
-
     </style>
     """, unsafe_allow_html=True)
 
@@ -91,36 +95,35 @@ st.markdown("""
 st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
 
-# 3. ฟังก์ชันโหลดโมเดล AI (ใช้ TensorFlow 2.15 ตามที่ตั้งใน requirements.txt)
+# 3. ฟังก์ชันโหลดโมเดล
 @st.cache_resource
 def load_model():
-    # โหลดไฟล์โมเดลที่ชื่อ keras_model.h5
     return tf.keras.models.load_model("keras_model.h5", compile=False)
 
 def load_labels():
-    # โหลดรายชื่อหินจากไฟล์ labels.txt
     with open("labels.txt", "r", encoding="utf-8") as f:
         return [line.strip() for line in f.readlines()]
 
-# เรียกใช้งานโมเดลและรายชื่อ
 try:
     model = load_model()
     labels = load_labels()
 except Exception as e:
-    st.error(f"เกิดข้อผิดพลาดในการโหลดโมเดล: {e}")
+    st.error(f"Error: {e}")
 
-# 4. ส่วนอัปโหลดและประมวลผล
-st.markdown("---")
-col1, col2 = st.columns([1.5, 1]) # แบ่งหน้าจอเป็น 2 ฝั่ง
-
-with col1:
-    file = st.file_uploader("ลากไฟล์รูปหินมาวางที่นี่ (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+# 4. ส่วนอัปโหลด (ทำให้กึ่งกลาง)
+st.markdown("<br>", unsafe_allow_html=True)
+file = st.file_uploader("ลากไฟล์รูปหินมาวางที่นี่ (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
 
 if file is not None:
-    image = Image.open(file).convert("RGB")
-    st.image(image, caption="รูปหินที่คุณอัปโหลด", width=500)
+    # เมื่ออัปโหลดแล้ว ค่อยแบ่งเป็น 2 คอลัมน์เพื่อโชว์รูปและผลลัพธ์
+    st.markdown("---")
+    col1, col2 = st.columns([1, 1])
     
-    # AI ประมวลผลรูปภาพ
+    image = Image.open(file).convert("RGB")
+    with col1:
+        st.image(image, caption="รูปที่อัปโหลด", use_container_width=True)
+    
+    # AI ประมวลผล
     size = (224, 224)
     image_processed = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
     img_array = np.asarray(image_processed)
@@ -135,15 +138,15 @@ if file is not None:
     with col2:
         st.markdown(f"""
             <div class="result-box">
-                <h2>🔍 ผลการวิเคราะห์</h2>
+                <h2 style='text-align:center;'>🔍 ผลการวิเคราะห์</h2>
                 <hr>
-                <h3>หินชนิดนี้คือ: <b>{labels[index]}</b></h3>
-                <p>ความมั่นใจของ AI: <b>{confidence * 100:.2f}%</b></p>
+                <p style='font-size:20px;'>หินชนิดนี้คือ: <b style='color:#dcb799;'>{labels[index]}</b></p>
+                <p style='font-size:18px;'>ความมั่นใจ: <b>{confidence * 100:.2f}%</b></p>
             </div>
         """, unsafe_allow_html=True)
 
-# 5. ส่วนแสดงรายชื่อผู้จัดทำ (Footer)
-st.markdown("""
+# 5. Footer
+st.markdown(f"""
     <div class="footer">
         Creators : Chadaporn Boonnii, Nopphanat Junnunl, Saranya Changkeb, Phatcharakamon Sodsri
     </div>
