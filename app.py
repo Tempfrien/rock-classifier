@@ -111,7 +111,7 @@ except Exception as e:
 
 # 4. ส่วนอัปโหลด (ทำให้กึ่งกลาง)
 st.markdown("<br>", unsafe_allow_html=True)
-file = st.file_uploader("ลากไฟล์รูปหินมาวางที่นี่ (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
+file = st.file_uploader(type=["jpg", "jpeg", "png"])
 
 def load_labels():
     with open("labels.txt", "r", encoding="utf-8") as f:
