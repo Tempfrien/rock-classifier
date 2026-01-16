@@ -90,7 +90,6 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-
 # 2. ส่วนหัวของหน้าเว็บ
 st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
@@ -99,6 +98,20 @@ st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไ�
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model("keras_model.h5", compile=False)
+
+def load_labels():
+    with open("labels.txt", "r", encoding="utf-8") as f:
+        return [line.strip() for line in f.readlines()]
+
+try:
+    model = load_model()
+    labels = load_labels()
+except Exception as e:
+    st.error(f"Error: {e}")
+
+# 4. ส่วนอัปโหลด (ทำให้กึ่งกลาง)
+st.markdown("<br>", unsafe_allow_html=True)
+file = st.file_uploader("ลากไฟล์รูปหินมาวางที่นี่ (JPG, JPEG, PNG)", type=["jpg", "jpeg", "png"])
 
 def load_labels():
     with open("labels.txt", "r", encoding="utf-8") as f:
