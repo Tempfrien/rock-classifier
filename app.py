@@ -39,7 +39,7 @@ st.markdown("""
     .upload-container {
         display: flex;
         justify-content: center;
-        width: 100%;
+        width: 60%;
     }
 
     [data-testid="stFileUploader"] {
