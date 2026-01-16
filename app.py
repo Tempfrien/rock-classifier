@@ -37,7 +37,7 @@ st.markdown("""
 
     /* จัดการกล่องอัปโหลดให้อยู่ตรงกลางหน้าจอและจัดสิ่งที่อยู่ข้างในให้ตรงกลาง */
     [data-testid="stFileUploader"] {
-        width: 350px !important; /* เพิ่มความกว้างให้สมดุล */
+        width: 310px !important; /* เพิ่มความกว้างให้สมดุล */
         margin: 0 auto !important;
     }
 
