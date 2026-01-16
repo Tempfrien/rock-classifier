@@ -3,12 +3,12 @@ import streamlit as st
 def apply_custom_style():
     st.markdown("""
         <style>
-        /* ซ่อนส่วนประกอบของระบบ Streamlit */
+        /* --- ส่วนที่ 1: จัดการหน้าเว็บทั่วไป --- */
         header {visibility: hidden;}
         #MainMenu {visibility: hidden;}
         .stDeployButton {display:none;}
+        [data-testid="stDecoration"] {display:none;}
 
-        /* จัดการภาพพื้นหลัง */
         .stApp {
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                               url("https://images.wallpaperscraft.com/image/single/beach_rocks_stones_136868_3840x2400.jpg");
@@ -17,7 +17,7 @@ def apply_custom_style():
             background-attachment: fixed;
         }
 
-        /* ปรับตำแหน่ง STONE LEN (ยิ่งค่าลบเยอะ ยิ่งขึ้นสูง) */
+        /* --- ส่วนที่ 2: หัวข้อ STONE LEN --- */
         .main-title {
             color: #dcb799 !important;
             font-size: 100px !important;
@@ -27,26 +27,51 @@ def apply_custom_style():
             text-align: left;
         }
 
-        /* ปรับขนาดกล่องสีขาว (ปัจจุบันคือ 350px) */
+        /* --- ส่วนที่ 3: กล่องอัปโหลด --- */
         [data-testid="stFileUploader"] {
             width: 350px !important; 
             margin: 0 auto !important;
         }
-        
-        /* ...ส่วนอื่นๆ ถูกต้องดีแล้วครับ... */
-        </style>
-    """, unsafe_allow_html=True)
-/* --- ส่วนที่ 5: แถบรายชื่อด้านล่าง --- */
+
+        [data-testid="stFileUploader"] section {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-radius: 20px !important;
+            padding: 30px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        /* --- ส่วนที่ 4: ปุ่ม Upload file --- */
+        button[kind="secondary"] {
+            font-size: 0 !important;
+            border-radius: 30px !important;
+            padding: 10px 30px !important;
+            background-color: white !important;
+            border: 1px solid #ccc !important;
+            display: block !important;
+            margin: 0 auto !important;
+        }
+        button[kind="secondary"]::after {
+            content: "Upload file";
+            font-size: 16px !important;
+            color: #333;
+        }
+
+        /* --- ส่วนที่ 5: แถบรายชื่อด้านล่าง (ต้องอยู่ใน <style>) --- */
         .footer-bar {
             position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
-            background-color: rgba(45, 62, 51, 0.95); /* เพิ่มความเข้ม */
+            background-color: rgba(45, 62, 51, 0.95);
             color: white;
             text-align: center;
-            padding: 12px 0; /* เพิ่มพื้นที่แนวตั้ง */
+            padding: 12px 0;
             font-size: 14px;
-            z-index: 9999; /* บังคับให้ลอยทับทุกองค์ประกอบ */
+            z-index: 9999;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
+        </style>
+    """, unsafe_allow_html=True)
