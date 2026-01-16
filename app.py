@@ -27,17 +27,20 @@ st.markdown("""
         text-align: left;
     }
 
+    /* แก้ไขจุดนี้: เอา subtitle มาไว้ใน style */
     .subtitle {
         color: white;
         font-size: 20px;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-        margin-bottom: 30px;
+        margin-top: -50px !important;   /* ขยับขึ้นหาชื่อ STONE LEN */
+        margin-bottom: 50px;            /* เว้นระยะห่างจากกล่องอัปโหลด */
+        margin-left: 10px;              /* ขยับไปทางขวานิดนึง */
         text-align: left;
     }
 
-    /* จัดการกล่องอัปโหลดให้อยู่ตรงกลางหน้าจอและจัดสิ่งที่อยู่ข้างในให้ตรงกลาง */
+    /* จัดการกล่องอัปโหลดให้อยู่ตรงกลาง */
     [data-testid="stFileUploader"] {
-        width: 310px !important; /* เพิ่มความกว้างให้สมดุล */
+        width: 310px !important; 
         margin: 0 auto !important;
     }
 
@@ -47,11 +50,11 @@ st.markdown("""
         padding: 40px !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important; /* จัดปุ่มให้อยู่กลาง */
+        align-items: center !important;
         text-align: center !important;
     }
 
-    /* เปลี่ยนชื่อปุ่ม Browse files เป็น Upload file และจัดให้อยู่กลาง */
+    /* เปลี่ยนชื่อปุ่ม */
     button[kind="secondary"] {
         font-size: 0 !important;
         border-radius: 30px !important;
@@ -67,7 +70,6 @@ st.markdown("""
         color: #333;
     }
 
-    /* ส่วนแสดงผลลัพธ์ */
     .result-box {
         background-color: rgba(255, 255, 255, 0.95);
         border-radius: 15px;
@@ -94,12 +96,6 @@ st.markdown("""
 # 2. ส่วนหัวของหน้าเว็บ
 st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
-.subtitle {
-        margin-top: -50px !important;   /* ขยับขึ้น (ใช้ค่าลบ) */
-        margin-bottom: 50px; /* เว้นระยะห่างจากกล่องอัปโหลดด้านล่าง */
-        margin-left: 10px;   /* ขยับไปทางขวา */
-        text-align: left;    /* หรือเปลี่ยนเป็น center ถ้าอยากให้อยู่กลาง */
-    }
 
 # 3. ฟังก์ชันโหลดโมเดล
 @st.cache_resource
@@ -121,7 +117,6 @@ st.markdown("<br>", unsafe_allow_html=True)
 file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
 if file is not None:
-    # เมื่ออัปโหลดแล้ว ค่อยแบ่งเป็น 2 คอลัมน์เพื่อโชว์รูปและผลลัพธ์
     st.markdown("---")
     col1, col2 = st.columns([1, 1])
     
@@ -129,7 +124,6 @@ if file is not None:
     with col1:
         st.image(image, caption="รูปที่อัปโหลด", use_container_width=True)
     
-    # AI ประมวลผล
     size = (224, 224)
     image_processed = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
     img_array = np.asarray(image_processed)
