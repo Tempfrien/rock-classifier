@@ -23,9 +23,11 @@ def apply_custom_style():
             font-size: 80px !important;
             font-weight: 900;
             text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
-            margin-top: -100px !important; 
-            text-align: left;
-        }
+            margin-top: -20px;   /* ขยับขึ้น (ใช้ค่าลบ) */
+            margin-bottom: 50px; /* เว้นระยะห่างจากกล่องอัปโหลดด้านล่าง */
+            margin-left: 10px;   /* ขยับไปทางขวา */
+            text-align: left;    /* หรือเปลี่ยนเป็น center ถ้าอยากให้อยู่กลาง */
+        } 
 
         /* --- ส่วนที่ 3: กล่องอัปโหลดขาวๆ --- */
         [data-testid="stFileUploader"] {
