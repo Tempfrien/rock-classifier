@@ -8,43 +8,45 @@ st.set_page_config(page_title="STONE LEN - Rock Classification", layout="wide")
 
 st.markdown("""
     <style>
-    /* ใส่ภาพพื้นหลัง */
+    /* ตั้งค่าพื้นหลังด้วยรูปจาก Pixabay */
     .stApp {
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                    url("https://pixabay.com/images/download/canyon-1740973_1920.jpg");
+        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                          url("https://pixabay.com/images/download/canyon-1740973_1920.jpg");
         background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
     }
-    /* ปรับแต่งส่วนหัว (Title) */
+
+    /* ตกแต่ง Title 'STONE LEN' */
     .main-title {
-        font-size: 60px !important;
-        font-weight: bold;
-        color: #FAD02C; /* สีทองแบบในรูป */
-        text-shadow: 2px 2px 4px #000000;
-        margin-bottom: 0px;
+        color: #FFD700; /* สีเหลืองทอง */
+        font-size: 65px;
+        font-weight: 900;
+        text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+        text-align: left;
+        margin-top: -50px;
     }
-    /* ปรับแต่งกร่องอัปโหลดรูป */
+
+    /* ตกแต่งกล่องอัปโหลดรูปภาพ */
     .stFileUploader {
         background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 15px;
-        padding: 20px;
+        border-radius: 25px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    /* ส่วน Footer ด้านล่าง */
-    .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #2D3E33;
+    
+    /* ปรับแต่งส่วนคำอธิบาย (Subtitle) */
+    .subtitle {
         color: white;
-        text-align: center;
-        padding: 10px;
+        font-size: 18px;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 2. ส่วนหัวเว็บไซต์ (Header) เหมือนในรูป
+# ส่วนหัวของหน้าเว็บ
 st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
-st.write("ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา")
+st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
 
 # 3. โหลดโมเดล AI
 @st.cache_resource
