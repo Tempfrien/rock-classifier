@@ -32,7 +32,7 @@ st.markdown("""
         color: white;
         font-size: 20px;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-        margin-top: -50px !important;   /* ขยับขึ้นหาชื่อ STONE LEN */
+        margin-top: -150px !important;   /* ขยับขึ้นหาชื่อ STONE LEN */
         margin-bottom: 50px;            /* เว้นระยะห่างจากกล่องอัปโหลด */
         margin-left: 10px;              /* ขยับไปทางขวานิดนึง */
         text-align: left;
