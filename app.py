@@ -35,31 +35,31 @@ st.markdown("""
         text-align: left;
     }
 
-    /* จัดการกล่องอัปโหลดให้อยู่ตรงกลางหน้าจอ */
-    .upload-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
+    /* จัดการกล่องอัปโหลดให้อยู่ตรงกลางหน้าจอและจัดสิ่งที่อยู่ข้างในให้ตรงกลาง */
     [data-testid="stFileUploader"] {
-        width: 300px; /* กำหนดความกว้างกล่อง */
-        margin: 0 auto;
+        width: 600px !important; /* เพิ่มความกว้างให้สมดุล */
+        margin: 0 auto !important;
     }
 
-    .stFileUploader section {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
+    [data-testid="stFileUploader"] section {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border-radius: 20px !important;
         padding: 40px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* จัดปุ่มให้อยู่กลาง */
+        text-align: center !important;
     }
 
-    /* เปลี่ยนชื่อปุ่ม Browse files เป็น Upload file */
+    /* เปลี่ยนชื่อปุ่ม Browse files เป็น Upload file และจัดให้อยู่กลาง */
     button[kind="secondary"] {
         font-size: 0 !important;
         border-radius: 30px !important;
         padding: 10px 30px !important;
         background-color: white !important;
         border: 1px solid #ccc !important;
+        display: block !important;
+        margin: 0 auto !important;
     }
     button[kind="secondary"]::after {
         content: "Upload file";
@@ -90,6 +90,7 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+
 # 2. ส่วนหัวของหน้าเว็บ
 st.markdown('<p class="main-title">STONE LEN</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา</p>', unsafe_allow_html=True)
@@ -109,22 +110,9 @@ try:
 except Exception as e:
     st.error(f"Error: {e}")
 
-# 4. ส่วนอัปโหลด (ทำให้กึ่งกลาง)
+# 4. ส่วนอัปโหลด
 st.markdown("<br>", unsafe_allow_html=True)
 file = st.file_uploader("", type=["jpg", "jpeg", "png"])
-
-def load_labels():
-    with open("labels.txt", "r", encoding="utf-8") as f:
-        return [line.strip() for line in f.readlines()]
-
-try:
-    model = load_model()
-    labels = load_labels()
-except Exception as e:
-    st.error(f"Error: {e}")
-
-# 4. ส่วนอัปโหลด (ทำให้กึ่งกลาง)
-st.markdown("<br>", unsafe_allow_html=True)
 
 if file is not None:
     # เมื่ออัปโหลดแล้ว ค่อยแบ่งเป็น 2 คอลัมน์เพื่อโชว์รูปและผลลัพธ์
