@@ -76,7 +76,7 @@ st.markdown("""
         justify-content: center;
     }
 
-    /* ปรับแต่งปุ่ม Browse Files ให้ดูเด่นขึ้นและอยู่กลาง */
+    /* ปรับแต่งปุ่ม Uplode Files ให้ดูเด่นขึ้นและอยู่กลาง */
     button[kind="secondary"] {
         margin: 0 auto;
         display: block;
