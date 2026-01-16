@@ -30,7 +30,7 @@ st.markdown("""
         font-size: 90px !important;
         font-weight: 900;
         text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
-        margin-top: -60px !important; 
+        margin-top: -100px !important; 
         text-align: left;
     }
 
