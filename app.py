@@ -11,7 +11,7 @@ st.markdown("""
     /* ใส่ภาพพื้นหลัง */
     .stApp {
         background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                    url("https://images.unsplash.com/photo-1504194104404-4cd3c27f2429?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+                    url("https://pixabay.com/images/download/canyon-1740973_1920.jpg");
         background-size: cover;
     }
     /* ปรับแต่งส่วนหัว (Title) */
