@@ -11,7 +11,7 @@ st.markdown("""
     /* ตั้งค่าพื้นหลังด้วยรูปแคนยอนจาก Pixabay */
     .stApp {
         background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                          url("https://pixabay.com/images/download/canyon-1740973_1920.jpg");
+                          url("https://images.wallpaperscraft.com/image/single/beach_rocks_stones_136868_3840x2400.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
