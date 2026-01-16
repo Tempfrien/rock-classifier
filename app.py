@@ -43,7 +43,7 @@ st.markdown("""
     }
 
     [data-testid="stFileUploader"] {
-        width: 600px; /* กำหนดความกว้างกล่อง */
+        width: 100px; /* กำหนดความกว้างกล่อง */
         margin: 0 auto;
     }
 
