@@ -91,7 +91,7 @@ st.markdown("""
               font-size: 20px; 
               text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
               position: relative; 
-              top: -85px; 
+              top: -150px; 
               left: 10px; 
               margin-bottom: -50px;">
         ROCK CLASSIFICATION WEBSITE : เว็บไซต์จำแนกประเภทหิน เพื่อการศึกษาทางธรณีวิทยา
